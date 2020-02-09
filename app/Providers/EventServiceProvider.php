@@ -15,10 +15,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-    ];
+            'App\Events\SeatBooked' => [
+                'App\Listeners\SendBookingNotification',
+            ],
+        ];
 
     /**
      * Register any events for your application.
@@ -29,6 +29,21 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        //
+    }
+}
+use App\Events\SeatBooked;
+
+class SendBookingNotification
+{
+    /**
+     * Handle the given event.
+     *
+     * @param  \App\Events\SeatBooked
+     * @return void
+     */
+    public function handle(SeatBooked $event)
+    {
         //
     }
 }
